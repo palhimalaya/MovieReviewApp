@@ -10,15 +10,15 @@
 
 users = [ 
   {
-    name: "Himalaya Pal",
-    email: "admin@himalaya.com",
-    password: "true_himalaya@123",
+    name: "Melon Musk",
+    email: "admin@melon.com",
+    password: "true_melon@123",
     role: "admin"
 },
 {
-    name: "Anmol Shah",
-    email: "admin@anmol.com",
-    password: "true_anmol@123",
+    name: "Jack Ma",
+    email: "admin@jack.com",
+    password: "true_jack@123",
     role: "admin"
 }
 ]
