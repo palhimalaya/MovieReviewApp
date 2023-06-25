@@ -33,6 +33,7 @@ AllCops:
     - "node_modules/**/*"
     - "bin/*"
     - "engines/flexonet_pbx/spec/dummy/**/*"
+    - "config/environments/production.rb"
 
 ###########################################################
 ###################### Rubocop ############################
