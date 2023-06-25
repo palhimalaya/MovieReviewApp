@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# migration for adding confirmable to devise
 class AddConfirmableToDevise < ActiveRecord::Migration[7.0]
   def change
     change_table :users do |t|
