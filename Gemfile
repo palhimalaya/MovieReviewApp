@@ -77,10 +77,10 @@ gem 'devise', '~> 4.9'
 gem 'devise-jwt'
 gem 'rack-cors'
 
-gem 'rubocop', require: false
-gem 'rubocop-performance', require: false
-gem 'rubocop-rails', require: false
-gem 'rubocop-rake', require: false
-gem 'rubocop-rspec', require: false
+gem 'rubocop', '~> 1.18.0', require: false
+gem 'rubocop-performance', '~> 1.11.0', require: false
+gem 'rubocop-rails', '~> 2.11.0', require: false
+gem 'rubocop-rake', '~> 0.6.0', require: false
+gem 'rubocop-rspec', '~> 2.4.0', require: false
 
 gem 'overcommit', '~> 0.60.0'
