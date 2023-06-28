@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      body {
+        font-family: sans-serif;
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+      }
+
+      .container {
+        width: 600px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70%;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin-bottom: 10px;
+      }
+
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      .confirm-email {
+        background-color: #f5f5f5;
+        padding: 20px;
+      }
+      .confirm-email a {
+  background-color: #009966;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm-email a:hover {
+  background-color: #007744;
+}
+    </style>
+  </head>
+  <body>
+  <div class = "container">
+  <div class = "confirm-email">
+    <h1>Confirmation Instructions</h1>
+    <p>Hello <%= @user.email %>,</p>
+    <p>Welcome to our application! Please confirm your email address by clicking the link below:</p>
+    <p><a href="<%= confirmation_url(@user, confirmation_token: @token) %>">Confirm my email</a></p>
+    <p>If you did not sign up for an account, you can safely ignore this email.</p>
+  </div>
+  </div>
+  </body>
+</html>

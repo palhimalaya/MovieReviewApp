@@ -55,7 +55,7 @@ Rails/PluckId:
 Rails/PluckInWhere:
   Enabled: true
 
-Rails/RedundantTravelBack:
+Rails/RedundantAllowNil:
   Enabled: true
 
 Rails/RenderInline:
