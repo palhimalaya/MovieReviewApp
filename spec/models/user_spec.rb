@@ -5,6 +5,11 @@ require 'rails_helper'
 RSpec.describe(User, type: :model) do
   let(:user) { build(:user) }
 
+  it 'sends an email' do
+    expect { user.send_instructions(user.confirmation_token) }
+      .to(change { ActionMailer::Base.deliveries.count }.by(1))
+  end
+
   it 'validates presence of first name' do
     expect(user).to(validate_presence_of(:first_name))
   end

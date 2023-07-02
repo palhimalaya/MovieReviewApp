@@ -20,6 +20,10 @@ class User < ApplicationRecord
                        length: { minimum: 8 },
                        format: {
                          with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}\z/,
-                         message: 'must include at least one lowercase letter, one uppercase letter, one symbol and one numeric digit'
+                         message: I18n.t('models.user_model.validation.password_message')
                        }
+
+  def send_instructions(confirmation_token)
+    UserMailer.confirmation_instructions(self, confirmation_token).deliver
+  end
 end

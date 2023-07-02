@@ -31,3 +31,73 @@
 
 en:
   hello: "Hello world"
+  global:
+    navbar:
+      brand: "Movies Review"
+      home: "Movies"
+      sign_in: "Sign In"
+      sign_up: "Sign Up"
+      sign_out: "Sign Out"
+  
+  movies:
+    form:
+      back: "Back"
+      edit: "Edit"
+      delete: "Delete"
+      add: "Add Movie"
+      edit: "Edit Movie"
+
+  view_movie:
+    button:
+      edit: "Edit"
+      delete: "Delete"
+      back: "Back"
+
+  devise:
+    mailer:
+      confirmation_instructions:
+        subject: "Confirmation instructions"
+        paragraph: "You can confirm your account email through the link below:"
+        greeting: "Welcome"
+
+      email_change:
+        subject: "Email Changed"
+        paragraph: "We're contacting you to notify you that your email is being changed to"
+        greeting: "Hello"
+
+      password_change:
+        subject: "Password Changed"
+        paragraph: "We're contacting you to notify you that your password has been changed."
+        greeting: "Hello"
+        
+      
+    password:
+      form:
+        forgot_password: "Forgot your password?"
+        change_password: "Change your password"
+        email: "email"
+        reset_instruction: "Send me reset password instructions"
+
+
+  models:
+    user_model:
+      validation:
+        password_message: "must include at least one lowercase letter, one uppercase letter, one symbol and one numeric digit"
+
+  views:
+    user_mailers:
+      confirmation_instructions:
+          subject: "Confirmation Instructions"
+          paragraph: "Welcome to our application! Please confirm your email address by clicking the link below:"
+          greeting: "Hello"
+          confirm_email: "Confirm my email"
+          message: "If you did not sign up for an account, you can safely ignore this email."
+
+
+
+
+
+      
+
+
+

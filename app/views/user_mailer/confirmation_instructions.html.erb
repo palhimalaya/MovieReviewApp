@@ -54,11 +54,11 @@
   <body>
   <div class = "container">
   <div class = "confirm-email">
-    <h1>Confirmation Instructions</h1>
-    <p>Hello <%= @user.email %>,</p>
-    <p>Welcome to our application! Please confirm your email address by clicking the link below:</p>
-    <p><a href="<%= confirmation_url(@user, confirmation_token: @token) %>">Confirm my email</a></p>
-    <p>If you did not sign up for an account, you can safely ignore this email.</p>
+    <h1><%= t('views.user_mailer.confirmation_instructions.subject') %></h1>
+    <p><%=t('views.user_mailer.confirmation_instructions.greeting') @user.email %>,</p>
+    <p><%= t('views.user_mailer.confirmation_instructions.paragraph') %></p>
+    <p><a href="<%= confirmation_url(@user, confirmation_token: @token) %>"><%= t('views.user_mailer.confirmation_instructions.confirm_email') %></a></p>
+    <p><%= t('views.user_mailer.confirmation_instructions.message') %></p>
   </div>
   </div>
   </body>
