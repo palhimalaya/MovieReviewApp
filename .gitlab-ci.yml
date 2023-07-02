@@ -1,0 +1,23 @@
+# this should be the ruby version that your rails app is using
+image: ruby:3.2.2 
+
+# add caching to Gitlab CI
+cache:
+  paths:
+    - vendor/
+
+before_script:
+  - apt-get update && apt-get install -y cmake # Install cmake needed for pronto
+  - bundle config set path 'vendor'
+  - bundle install -j $(nproc) --path=vendor # install all packages in the Gemfile
+  - git fetch origin # fetch all branches, was throwing Rugged::ReferenceError, you can remove this and try if it works for you
+
+stages:
+  - lint # we are only formatting/linting the changes
+
+pronto:
+  stage: lint # runs pronto on the lint stage
+  only:
+    - merge_requests # run pronto only on merge requests (also runs when new changes are pushed to the merge request)
+  script:
+    - PRONTO_GITLAB_API_PRIVATE_TOKEN=$PRONTO_ACCESS_TOKEN bundle exec pronto run -f gitlab_mr -c origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME # Run pronto on branch of current merge request
