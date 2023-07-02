@@ -1,7 +1,7 @@
 <p><%=t('devise.mailer.email_change.greeting') @email %>!</p>
 
 <% if @resource.try(:unconfirmed_email?) %>
-  <p><%=t('devise.mailer.email_change.paragraph') @resource.unconfirmed_email %>.</p>
+  <p><%=t('devise.mailer.email_change.paragraph') @resource.unconfirmed_email %></p>
 <% else %>
-  <p><%=t('devise.mailer.email_change.paragraph') @resource.email %>.</p>
+  <p><%=t('devise.mailer.email_change.paragraph') @resource.email %></p>
 <% end %>

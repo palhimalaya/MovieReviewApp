@@ -9,7 +9,7 @@ class Api::V1::Users::ConfirmationsController < Devise::ConfirmationsController
   # POST /resource/confirmation
   def create
     super do |resource|
-      UserMailer.confirmation_instructions(resource, resource.confirmation_token).deliver_later
+      UserMailer.confirmation_instructions(resource, resource.confirmation_token).deliver
     end
   end
 

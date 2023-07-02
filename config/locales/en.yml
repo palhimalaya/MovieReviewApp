@@ -85,7 +85,7 @@ en:
         password_message: "must include at least one lowercase letter, one uppercase letter, one symbol and one numeric digit"
 
   views:
-    user_mailers:
+    user_mailer:
       confirmation_instructions:
           subject: "Confirmation Instructions"
           paragraph: "Welcome to our application! Please confirm your email address by clicking the link below:"
