@@ -3,11 +3,15 @@
 # ApplicationController class
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   respond_to :html, :json
 
-  def index
-    # Set the current_user variable
-    @current_user = current_api_v1_users_user
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+      user_params.permit(:role, :first_name, :last_name, :email, :password, :password_confirmation)
+    end
   end
 end
