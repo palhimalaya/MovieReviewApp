@@ -43,5 +43,3 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  username: <%= ENV['MY_APP_RENDER_DATABASE_USERNAME'] %>
-  password: <%= ENV['MY_APP_RENDER_DATABASE_PASSWORD'] %>
