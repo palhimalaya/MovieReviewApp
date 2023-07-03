@@ -1,8 +1,8 @@
 databases:
   - name: postgres
     ipAllowList: []
-    databaseName: movie_review_app_render
-    user: movie_review_app_render
+    databaseName: movie_review_zvld
+    user: movie_review_zvld_user
 
 services:
   - type: web
