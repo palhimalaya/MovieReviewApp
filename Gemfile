@@ -98,3 +98,5 @@ gem 'faker'
 gem 'securerandom'
 
 gem 'pg'
+
+gem 'sendgrid-ruby'
