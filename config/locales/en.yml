@@ -52,6 +52,14 @@ en:
       edit: "Edit"
       delete: "Delete"
       back: "Back"
+    
+    review:
+      title: "Movie Reviews"
+      login_message: "You need to login to add a review"
+      button:
+        add: "Add Review"
+        edit: "Edit Review"
+        delete: "Delete Review"
 
   devise:
     mailer:
