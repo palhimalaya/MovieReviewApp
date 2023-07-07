@@ -16,7 +16,7 @@ Performance/BlockGivenWithExplicitBlock:
 Performance/CollectionLiteralInLoop:
   Enabled: true
 
-Performance/ConcurrentMonotonicTime:
+Performance/UnfreezeString:
   Enabled: true
 
 Performance/ConstantRegexp:
