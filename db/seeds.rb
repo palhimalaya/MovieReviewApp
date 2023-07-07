@@ -13,12 +13,14 @@ users = [
     name: "Melon Musk",
     email: "admin@melon.com",
     password: "true_melon@123",
+    password_confirmation: "true_melon@123",
     role: "admin"
 },
 {
     name: "Jack Ma",
     email: "admin@jack.com",
     password: "true_jack@123",
+    password_confirmation: "true_jack@123",
     role: "admin"
 }
 ]

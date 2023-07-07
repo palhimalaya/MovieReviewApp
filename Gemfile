@@ -51,11 +51,6 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
-
-  # configure pronto to automate code review in CI
-  gem 'pronto', '~> 0.11.1'
-  gem 'pronto-rubocop', '~> 0.11.5', require: false
-  gem 'pronto-flay', '~> 0.11.1', require: false
 end
 
 group :development do
@@ -75,3 +70,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "devise", "~> 4.9"
+gem 'devise-jwt'
