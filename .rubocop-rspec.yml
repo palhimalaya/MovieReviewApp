@@ -1,0 +1,122 @@
+# .rubocop-rspec.yml
+
+# Disable RSpec/AnyInstance cop
+RSpec/AnyInstance:
+  Enabled: false
+
+# Disable RSpec/BeforeAfterAll cop
+RSpec/BeforeAfterAll:
+  Enabled: false
+
+# Disable RSpec/ContextWording cop
+RSpec/ContextWording:
+  Enabled: false
+
+# Disable RSpec/DescribeClass cop
+RSpec/DescribeClass:
+  Enabled: false
+
+# Disable RSpec/EmptyExampleGroup cop
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
+# Disable RSpec/ExampleLength cop
+RSpec/ExampleLength:
+  Enabled: false
+
+# Enable RSpec/ExcessiveDocstringSpacing cop
+RSpec/ExcessiveDocstringSpacing:
+  Enabled: true
+
+# Disable RSpec/ExpectInHook cop
+RSpec/ExpectInHook:
+  Enabled: false
+
+# Disable RSpec/FilePath cop
+RSpec/FilePath:
+  Enabled: false
+
+# Enable RSpec/IdenticalEqualityAssertion cop
+RSpec/IdenticalEqualityAssertion:
+  Enabled: true
+
+# Disable RSpec/InstanceVariable cop
+RSpec/InstanceVariable:
+  Enabled: false
+
+# Disable RSpec/LetSetup cop
+RSpec/LetSetup:
+  Enabled: false
+
+# Disable RSpec/MessageChain cop
+RSpec/MessageChain:
+  Enabled: false
+
+# Disable RSpec/MessageSpies cop
+RSpec/MessageSpies:
+  Enabled: false
+
+# Disable RSpec/MultipleExpectations cop
+RSpec/MultipleExpectations:
+  Enabled: false
+
+# Disable RSpec/MultipleMemoizedHelpers cop
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+# Disable RSpec/NamedSubject cop
+RSpec/NamedSubject:
+  Enabled: false
+
+# Set the max number of nested groups for RSpec/NestedGroups cop
+RSpec/NestedGroups:
+  Max: 7
+
+# Enable RSpec/SubjectDeclaration cop
+RSpec/SubjectDeclaration:
+  Enabled: true
+
+# Disable RSpec/SubjectStub cop
+RSpec/SubjectStub:
+  Enabled: false
+
+# Enable RSpec/Rails/AvoidSetupHook cop
+RSpec/Rails/AvoidSetupHook:
+  Enabled: true
+
+# Disable RSpec/VerifiedDoubles cop
+RSpec/VerifiedDoubles:
+  Enabled: false
+
+# Disable RSpec/VoidExpect cop
+RSpec/VoidExpect:
+  Enabled: false
+
+# Enable RSpec/BeEq cop (new in 2.9.0)
+RSpec/BeEq:
+  Enabled: true
+
+# Enable RSpec/BeNil cop (new in 2.9.0)
+RSpec/BeNil:
+  Enabled: true
+
+# Enable RSpec/ChangeByZero cop (new in 2.11.0)
+RSpec/ChangeByZero:
+  Enabled: true
+
+# Enable RSpec/VerifiedDoubleReference cop (new in 2.10.0)
+RSpec/VerifiedDoubleReference:
+  Enabled: true
+
+# Enable RSpec/Capybara cop (new in 2.12)
+RSpec/Capybara:
+  Enabled: true
+
+# Enable RSpec/FactoryBot cop (new in 2.7)
+RSpec/FactoryBot:
+  Enabled: true
+
+# Enable RSpec/Rails/HaveHttpStatus cop (new in 2.12)
+RSpec/Rails/HaveHttpStatus:
+  Enabled: true
+# Rest of the configuration...
