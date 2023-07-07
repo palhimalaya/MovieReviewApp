@@ -84,3 +84,5 @@ gem 'rubocop-rake', '~> 0.6.0', require: false
 gem 'rubocop-rspec', '~> 2.4.0', require: false
 
 gem 'overcommit', '~> 0.60.0'
+
+gem 'active_model_serializers', '~> 0.10.13'
