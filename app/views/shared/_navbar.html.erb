@@ -15,13 +15,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav nav-pills">
          <li class="nav-item">
-          <%= link_to(root_path, class: "nav-link #{'active' if current_page?(root_path)}") do %>
+          <%= link_to(root_path, class: "nav-link #{'active text-white' if current_page?(root_path)}") do %>
             Movies
           <% end %>
         </li>
                
        <% if user_signed_in? %>
-        <% if current_user.role == "Admin" %>
+        <% if current_user.role == "admin" %>
           <li class="nav-item">
             <%= link_to "Add Movies", root_path, class: "nav-link" %>
           </li>
