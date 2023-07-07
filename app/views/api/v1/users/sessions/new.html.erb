@@ -1,7 +1,7 @@
 <div class="container d-flex justify-content-center flex-column">
   <h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-signin"}) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   
   <div class="field form-group mt-3 mb-3">
     <%= f.label :email %><br />
@@ -25,5 +25,6 @@
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+<%= render "api/v1/users/shared/links" %>
 </div>
+

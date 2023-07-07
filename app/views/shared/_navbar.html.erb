@@ -19,28 +19,20 @@
             Movies
           <% end %>
         </li>
-               
-       <% if user_signed_in? %>
-        <% if current_user.role == "admin" %>
-          <li class="nav-item">
-            <%= link_to "Add Movies", root_path, class: "nav-link" %>
-          </li>
-          <% end %>
-        <% end %>
       </ul>
       
      
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <% if user_signed_in? %>
+        <% if api_v1_users_user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "Sign Out", destroy_user_session_path, data: {"turbo-method": :delete}, class: "nav-link" %>
+            <%= link_to "Sign Out", destroy_api_v1_users_user_session_path, data: {"turbo-method": :delete}, class: "nav-link" %>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+            <%= link_to "Sign Up", new_api_v1_users_user_registration_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Sign In", user_session_path, class: "nav-link" %>
+            <%= link_to "Sign In", api_v1_users_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
       </ul>
