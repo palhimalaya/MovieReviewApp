@@ -1,4 +1,17 @@
 <div class="container">
+  <div class="d-flex flex-row mt-4 justify-content-between">
+    <div>
+    <%= form_tag(api_v1_movies_path, method: :get) do %>
+      <%= select_tag :order, options_for_select([
+        ["Sort by Release Date", ""],
+        ["Ascending", "asc"],
+        ["Descending", "desc"]], params[:order]), onchange: "this.form.submit()", class: "form-select form-select-lg mb-3" %>
+    <% end %>
+  </div>
+  <div>
+      <%= render "search" %>
+  </div>
+  </div>
   <div class = "mt-4" >
       <% if user_signed_in? %>
         <% if current_user.role == "admin" %>
