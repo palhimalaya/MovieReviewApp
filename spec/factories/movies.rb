@@ -2,10 +2,10 @@
 
 FactoryBot.define do
   factory :movie do
-    title { 'MyString' }
-    description { 'MyString' }
-    release_date { '2023-06-29' }
-    duration { 1 }
-    cover_img { 'MyString' }
+    title { Faker::Movie.title }
+    description { Faker::Movie.quote }
+    release_date { Faker::Date.between(from: 10.years.ago, to: Time.zone.today) }
+    duration { Faker::Number.number(digits: 3) }
+    cover_img { Faker::LoremFlickr.image(size: '50x60') }
   end
 end

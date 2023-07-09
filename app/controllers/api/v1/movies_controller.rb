@@ -16,7 +16,7 @@ class Api::V1::MoviesController < ApplicationController
     return if request.format.html?
 
     render(json: {
-      status: {  message: 'Movies were found successfully.' },
+      status: {  message: I18n.t('controllers.movies_controller.notice.find_movies') },
       data: ActiveModel::SerializableResource.new(@movies, each_serializer: MovieSerializer)
     }, status: :ok
     )
@@ -28,7 +28,7 @@ class Api::V1::MoviesController < ApplicationController
     return if request.format.html?
 
     render(json: {
-      status: { code: 200, message: 'Movie was found successfully.' },
+      status: { code: 200, message: I18n.t('controllers.movies_controller.error.find_movie') },
       data: ActiveModel::SerializableResource.new(@movie, each_serializer: MovieSerializer)
     }, status: :ok
     )
@@ -45,11 +45,11 @@ class Api::V1::MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
     @movie.user_id = current_user.id
     if @movie.save
-      flash[:notice] = 'Movie was added successfully!'
+      flash[:notice] = I18n.t('controllers.movies_controller.notice.add_movie')
       return redirect_to(root_path) if request.format.html?
 
       render(json: {
-               status: { code: 201, message: 'Movie was created successfully.' },
+               status: { code: 201, message: I18n.t('controllers.movies_controller.notice.create') },
                data: ActiveModel::SerializableResource.new(@movie, each_serializer: MovieSerializer)
              },
              status: :created
@@ -63,7 +63,7 @@ class Api::V1::MoviesController < ApplicationController
         render(:new, status: :unprocessable_entity)
       else
         render(json: {
-                 status: { code: 422, message: 'Movie was not created successfully.' },
+                 status: { code: 422, message: I18n.t('controllers.movies_controller.error.create') },
                  data: ActiveModel::SerializableResource.new(@movie, each_serializer: MovieSerializer)
                },
                status: :unprocessable_entity
@@ -81,11 +81,11 @@ class Api::V1::MoviesController < ApplicationController
   def update
     if movie.update(movie_params)
 
-      flash[:notice] = 'Movie was updated successfully!'
+      flash[:notice] = I18n.t('controllers.movies_controller.notice.update_movie')
       return redirect_to(root_path) if request.format.html?
 
       render(json: {
-        status: { code: 200, message: 'Movie was updated successfully.' },
+        status: { code: 200, message: I18n.t('controllers.movies_controller.notice.update_movie') },
         data: ActiveModel::SerializableResource.new(movie, each_serializer: MovieSerializer)
 
       }, status: :ok
@@ -96,7 +96,7 @@ class Api::V1::MoviesController < ApplicationController
       return render(:edit, status: :unprocessable_entity) if request.format.html?
 
       render(json: {
-        status: { code: 422, message: 'Movie was not updated successfully.' },
+        status: { code: 422, message: I18n.t('controllers.movies_controller.error.update_movie') },
         data: ActiveModel::SerializableResource.new(movie, each_serializer: MovieSerializer)
       }, status: :unprocessable_entity
       )
@@ -106,11 +106,11 @@ class Api::V1::MoviesController < ApplicationController
   # DELETE /movies/1
   def destroy
     if movie.destroy
-      flash[:notice] = 'Movie was deleted successfully!'
+      flash[:notice] = I18n.t('controllers.movies_controller.notice.delete_movie')
       return redirect_to(root_path) if request.format.html?
 
       render(json: {
-        status: { code: 204, message: 'Movie was deleted successfully.' }
+        status: { code: 204, message: I18n.t('controllers.movies_controller.notice.delete_movie') }
       }
             )
     else
@@ -119,7 +119,7 @@ class Api::V1::MoviesController < ApplicationController
       return render(:edit, status: :unprocessable_entity) if request.format.html?
 
       render(json: {
-        status: { code: 422, message: 'Movie was not deleted successfully.' },
+        status: { code: 422, message: I18n.t('controllers.movies_controller.error.delete_movie') },
         data: ActiveModel::SerializableResource.new(movie, each_serializer: MovieSerializer)
       }, status: :unprocessable_entity
       )
@@ -133,11 +133,11 @@ class Api::V1::MoviesController < ApplicationController
     return if current_user.role == 'admin'
 
     if request.format.html?
-      flash[:alert] = 'You do not have permission to perform this action.'
+      flash[:alert] = I18n.t('controllers.movies_controller.error.unauthorized')
       redirect_to(root_path)
     else
       render(json: {
-        status: { code: 401, message: 'You do not have permission to perform this action.' }
+        status: { code: 401, message: I18n.t('controllers.movies_controller.error.unauthorized') }
       }, status: :unauthorized
       )
     end
