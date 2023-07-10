@@ -1,27 +1,27 @@
 # frozen_string_literal: true
 
 class MoviesFinder
-  attr_reader :scope, :params
+  attr_reader :scope, :search_query
 
-  def initialize(scope, params)
+  def initialize(scope, search_query)
     @scope = scope
-    @params = params
+    @search_query = search_query
   end
 
   def execute
-    return search if params[:search].present?
-    return sort if params[:order].present?
+    return search_by_name if search_query[:search].present?
+    return sort_by_release_date if search_query[:order].present?
 
     scope
   end
 
   private
 
-  def search
-    scope.where('title LIKE ?', "%#{params[:search]}%")
+  def search_by_name
+    scope.where('title LIKE ?', "%#{search_query[:search]}%")
   end
 
-  def sort
-    scope.order(release_date: params[:order])
+  def sort_by_release_date
+    scope.order(release_date: search_query[:order])
   end
 end
