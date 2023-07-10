@@ -1,25 +1,26 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :users, path: 'api/v1/users',
+                     path_names: {
+                       sign_in: 'login',
+                       sign_out: 'logout'
+                     },
+                     controllers: {
+                       sessions: 'api/v1/users/sessions',
+                       registrations: 'api/v1/users/registrations',
+                       passwords: 'api/v1/users/passwords',
+                       confirmations: 'api/v1/users/confirmations',
+                       unlocks: 'api/v1/users/unlocks'
+                     }
+
+  # Defines the root path route ("/")
+  # home route is defined in app/controllers/api/v1/movies_controller.rb
+  root to: 'api/v1/movies#index'
+
   namespace :api do
     namespace :v1 do
-      namespace :users do
-        devise_for :users, path: '',
-                           path_names: {
-                             sign_in: 'login',
-                             sign_out: 'logout'
-                           },
-                           controllers: {
-                             confirmations: 'api/v1/users/confirmations',
-                             passwords: 'api/v1/users/passwords',
-                             registrations: 'api/v1/users/registrations',
-                             sessions: 'api/v1/users/sessions',
-                             unlocks: 'api/v1/users/unlocks'
-
-                           }
-      end
+      resources :movies
     end
   end
-  # Defines the root path route ("/")
-  root 'main#index'
 end

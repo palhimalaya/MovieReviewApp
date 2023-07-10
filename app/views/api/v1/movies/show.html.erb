@@ -1,0 +1,28 @@
+<div style="height: 90vh;", class=" d-flex justify-content-center">
+  <div class="bg-light mb-3 mt-auto mb-auto rounded flex-wrap", style="display: flex; justify-content: center; align-item: center; flex; gap: 70px; padding: 10px; ">
+    <div>
+      <%= image_tag(@movie.cover_img, style: "max-height: 600px; max-width: 700px; height: 600px;" ) %>
+    </div>
+    <div style=" max-width: 600px; text-align:start;">
+      <h2><%= @movie.title %></h2>
+        <p><%= @movie.description %></p>
+        <p class="text text-info"><%= "Release Date: #{@movie.release_date}" %></p>
+        <p class="text text-info"><%= "Duration: #{@movie.duration} min" %></p>
+        <%= link_to "Back", root_path, class: "btn btn-secondary" %>
+
+        <% if user_signed_in? %>
+          <% if current_user.role == "admin" %>
+            <%= link_to "Edit", edit_api_v1_movie_path(@movie.id), class: "btn btn-primary" %>
+            <%= link_to "Delete", api_v1_movie_path(@movie.id),  data: {turbo_method: :delete ,turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          <% end %>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

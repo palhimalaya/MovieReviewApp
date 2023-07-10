@@ -24,9 +24,10 @@
   </head>
 
   <body>
-    <%= render partial: "shared/navbar" %>  
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render partial: "shared/navbar" %>
+    <div class="container">
+        <%= render partial: "shared/flash_message" %>
+    </div>  
     <%= yield %>
   </body>
 </html>
