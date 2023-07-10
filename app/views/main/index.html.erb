@@ -1,6 +1,6 @@
 <h1>Movie Review</h1>
-<% if api_v1_users_user_signed_in? %>
-  <% if @current_user.role == "admin" %>
+<% if user_signed_in? %>
+  <% if current_user.role == "admin" %>
      <%= link_to "Add Movies", root_path, class: "nav-link", class: 'btn btn-secondary'%>
   <% end %>
 <% end %>
