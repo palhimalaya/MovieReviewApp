@@ -21,14 +21,26 @@ class Api::V1::MoviesController < ApplicationController
 
   # GET /movies/1
   def show
-    @movie = movie
-    return if request.format.html?
+    movie = Movie.find_by(id: params[:id])
+    if movie.nil?
+      flash[:alert] = I18n.t('controllers.movies_controller.error.find_movie')
+      return redirect_to(root_path) if request.format.html?
 
-    render(json: {
-      status: { message: I18n.t('controllers.movies_controller.error.find_movie') },
-      data: ActiveModel::SerializableResource.new(@movie, each_serializer: MovieSerializer)
-    }, status: :ok
-    )
+      render(json: {
+        status: { message: I18n.t('controllers.movies_controller.error.find_movie') }
+      }, status: :not_found
+      )
+
+    else
+      @movie = movie
+      return if request.format.html?
+
+      render(json: {
+        status: { message: I18n.t('controllers.movies_controller.error.find_movie') },
+        data: ActiveModel::SerializableResource.new(@movie, each_serializer: MovieSerializer)
+      }, status: :ok
+      )
+    end
   end
 
   # GET /movies/new
