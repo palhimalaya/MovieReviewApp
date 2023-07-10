@@ -9,10 +9,7 @@ class Api::V1::MoviesController < ApplicationController
 
   # GET /movies
   def index
-    finder = MoviesFinder.new(params)
-    @movies = finder.find_movies
-
-    # return view if not api request
+    @movies = MoviesFinder.new(Movie.all, params).execute
     return if request.format.html?
 
     render(json: {
