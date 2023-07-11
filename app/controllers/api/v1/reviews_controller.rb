@@ -26,7 +26,7 @@ class Api::V1::ReviewsController < ApplicationController
       return redirect_to(api_v1_movie_path(@movie)) if request.format.html?
 
       render(json: {
-               status: { code: 201, message: I18n.t('controllers.reviews_controller.notice.create') },
+               status: { message: I18n.t('controllers.reviews_controller.notice.create') },
                data: ActiveModel::SerializableResource.new(@review, each_serializer: ReviewSerializer)
              },
              status: :created
@@ -39,7 +39,7 @@ class Api::V1::ReviewsController < ApplicationController
         render(:new, status: :unprocessable_entity)
       else
         render(json: {
-                 status: { code: 422, message: I18n.t('controllers.reviews_controller.error.create') },
+                 status: { message: I18n.t('controllers.reviews_controller.error.create') },
                  errors: @review.errors.full_messages
                },
                status: :unprocessable_entity
