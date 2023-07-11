@@ -20,13 +20,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :movies
-    end
-  end
-
-  namespace :api do
-    namespace :v1 do
-      resources :reviews
+      resources :movies do
+        resources :reviews
+      end
     end
   end
 end

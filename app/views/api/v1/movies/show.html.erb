@@ -1,6 +1,6 @@
-<div style="height: 90vh;", class=" d-flex justify-content-center flex-column">
+<div  class=" d-flex justify-content-center flex-column flex-wrap bg-light  mb-auto rounded">
 
-  <div class="bg-light mb-3 mt-auto mb-auto rounded flex-wrap", style="display: flex; justify-content: center; align-item: center; flex; gap: 70px; padding: 10px; ">
+  <div class=" flex-wrap", style="display: flex; justify-content: center; align-item: center; flex; gap: 70px; padding: 10px;">
     <div>
       <%= image_tag(@movie.cover_img, style: "max-height: 600px; max-width: 700px; height: 600px;" ) %>
     </div>
@@ -20,24 +20,40 @@
     </div>
   </div>
 
-<div class="d-flex justify-content-center item-center mh-100">
- <% if user_signed_in? %>
-    <div class="justify-center item-center">
-      <div>
-        <h2><%= t('view_movie.review.title') %></h2>
-      </div>
-      <div class="mt-6">
-        <%= link_to t('view_movie.review.button.add'), new_api_v1_review_path(@movie.id), class: "btn btn-primary" %>
-      </div>
-    </div>      
-    <% else %>
-      <div style=" max-width: 600px; text-align:start;">
-        <h2><%= t('view_movie.review.login_message') %></h2>
-      </div>
-  <% end %>
+  <div style="margin-top: 10px;", class=" d-flex justify-content-center bg-light mb-3 rounded flex-wrap">
+   <div class="d-flex flex-column flex-wrap">
+     <div>
+      <h2><%= t('view_movie.review.title') %></h2>
+      <% if user_signed_in? %>
+        <div class="mt-6">
+          <%= link_to t('view_movie.review.button.add'), new_api_v1_movie_review_path(@movie), class: "btn btn-primary" %>
+        </div>
+      <% else %>
+        <div style=" max-width: 600px; text-align:start;">
+          <h2><%= t('view_movie.review.login_message') %></h2>
+        </div>
+      <% end %>
+    </div>
+      <% @movie.reviews.each do |review| %>
+    <div class="card mt-4  p-4" style="max-width: 100vw;">
+        <div class="card" style="width:80vw">
+          <div class="card-body">
+            <div class="d-flex flex-row justify-content-between">
+              <h5 class="card-title"><%= User.find(review.user_id).first_name %></h5>
+              <h3>⭐ <%= review.rating %></h3>
+              
+           </div>
+            <h6 class="card-subtitle mb-2 text-muted"><%= review.created_at.strftime("%Y-%m-%d %H:%M:%S") %></h6>
+            <p class="card-text"><%= review.review %></p>
+          </div>
+         </div>
+    </div>   
+      <% end %>
+   </div>   
+</div>  
 </div>
 
-</div>
+
 
 
 

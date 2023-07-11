@@ -20,7 +20,6 @@ class Api::V1::MoviesController < ApplicationController
   # GET /movies/1
   def show
     @movie = Movie.find(params[:id])
-
     return if request.format.html?
 
     render(json: {
