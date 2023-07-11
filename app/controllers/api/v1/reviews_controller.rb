@@ -22,11 +22,11 @@ class Api::V1::ReviewsController < ApplicationController
     @review.user_id = current_user.id
 
     if @review.save
-      flash[:notice] = 'Review was added successfully!'
+      flash[:notice] = I18n.t('controllers.reviews_controller.notice.add_review')
       return redirect_to(api_v1_movie_path(@movie)) if request.format.html?
 
       render(json: {
-               status: { code: 201, message: 'Review was created successfully.' },
+               status: { message: I18n.t('controllers.reviews_controller.notice.create') },
                data: ActiveModel::SerializableResource.new(@review, each_serializer: ReviewSerializer)
              },
              status: :created
@@ -39,7 +39,7 @@ class Api::V1::ReviewsController < ApplicationController
         render(:new, status: :unprocessable_entity)
       else
         render(json: {
-                 status: { code: 422, message: 'Review was not created.' },
+                 status: { message: I18n.t('controllers.reviews_controller.error.create') },
                  errors: @review.errors.full_messages
                },
                status: :unprocessable_entity

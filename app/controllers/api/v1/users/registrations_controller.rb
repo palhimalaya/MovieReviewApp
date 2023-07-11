@@ -58,18 +58,18 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
 
     if request.method == 'POST' && resource.persisted?
       render(json: {
-        status: { code: 200, message: 'Signed up successfully.' },
+        status: {  message: I18n.t('controllers.users_controller.notice.create') },
         data: ActiveModel::SerializableResource.new(resource, each_serializer: UserSerializer)
       }, status: :ok
       )
     elsif request.method == 'DELETE'
       render(json: {
-        status: { code: 200, message: 'Account deleted successfully.' }
+        status: { message: I18n.t('controllers.users_controller.notice.delete_user') }
       }, status: :ok
       )
     else
       render(json: {
-        status: { code: 422, message: "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}" }
+        status: {  message: "#{I18.t('controllers.users_controller.error.create')} #{resource.errors.full_messages.to_sentence}" }
       }, status: :unprocessable_entity
       )
     end

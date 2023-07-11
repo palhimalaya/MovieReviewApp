@@ -1,0 +1,4 @@
+<%= form_tag(api_v1_movies_path, method: :get, class: 'd-flex flex-row gap-2' ) do %>
+  <%= text_field_tag :search, params[:search], class: 'form-control', id: 'search-input'%>
+  <%= submit_tag "Search", name: nil, class: 'btn btn-outline-primary' %>
+<% end %>

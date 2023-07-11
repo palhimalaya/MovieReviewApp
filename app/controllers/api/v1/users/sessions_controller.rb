@@ -31,7 +31,7 @@ class Api::V1::Users::SessionsController < Devise::SessionsController
     return super if request.format.html?
 
     render(json: {
-      status: { code: 200, message: 'Logged in successfully.' },
+      status: { message: I18.t('controllers.users_controller.notice.sign_in') },
       data: ActiveModelSerializers::SerializableResource.new(resource, each_serializer: UserSerializer)
     }, status: :ok
     )
@@ -42,14 +42,12 @@ class Api::V1::Users::SessionsController < Devise::SessionsController
 
     if current_user
       render(json: {
-        status: 200,
-        message: 'Logged out successfully'
+        message: I18n.t('controllers.users_controller.notice.sign_out')
       }, status: :ok
       )
     else
       render(json: {
-        status: 401,
-        message: "Couldn't find an active session."
+        message: I18n.t('controllers.users_controller.error.sign_out')
       }, status: :unauthorized
       )
     end
