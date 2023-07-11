@@ -71,4 +71,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.preview_path = Rails.root.join('test/mailers/previews')
+  config.action_mailer.delivery_method = :letter_opener
 end
