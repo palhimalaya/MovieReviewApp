@@ -100,3 +100,5 @@ gem 'securerandom'
 gem 'pg'
 
 gem 'sendgrid-ruby'
+
+gem 'pundit', '~> 2.3'

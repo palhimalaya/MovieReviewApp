@@ -21,8 +21,16 @@ class User < ApplicationRecord
                        length: { minimum: 8 },
                        format: {
                          with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}\z/,
-                         message: I18n.t('models.user_model.validation.password_message')
+                         message: I18n.t('models.user.validation.incorrect_password_format')
                        }
+
+  def admin?
+    role == 'admin'
+  end
+
+  def audience?
+    role == 'audience'
+  end
 
   def send_instructions(confirmation_token)
     UserMailer.confirmation_instructions(self, confirmation_token).deliver

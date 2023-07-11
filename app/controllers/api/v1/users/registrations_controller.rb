@@ -69,7 +69,7 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
       )
     else
       render(json: {
-        status: {  message: "#{I18.t('controllers.users_controller.error.create')} #{resource.errors.full_messages.to_sentence}" }
+        status: {  message: "#{I18n.t('controllers.users_controller.error.create')} #{resource.errors.full_messages.to_sentence}" }
       }, status: :unprocessable_entity
       )
     end

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Api::V1::ReviewsController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :authorize_audience, only: %i[new create]
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   def index
     @reviews = Review.all.order(created_at: :desc)
     render(json: @reviews)
@@ -49,6 +53,19 @@ class Api::V1::ReviewsController < ApplicationController
   end
 
   private
+
+  def authorize_audience
+    authorize(Review)
+  end
+
+  def user_not_authorized
+    if request.format.html?
+      flash[:alert] = 'You are not authorized to perform this action.'
+      redirect_to(request.referer || root_path)
+    else
+      render(json: { error: 'You are not authorized to perform this action.' }, status: :unauthorized)
+    end
+  end
 
   def review_params
     params.require(:review).permit(:rating, :review)

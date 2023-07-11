@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe(Devise::Mailer) do
   describe 'confirmation_instructions' do
     let(:user) { build(:user) }
-    let(:token) { '74d42639098edf1f20df97dd76' }
+    let(:token) { SecureRandom.urlsafe_base64.to_s }
     let(:mail) { described_class.confirmation_instructions(user, token, {}) }
 
     it 'renders the headers' do

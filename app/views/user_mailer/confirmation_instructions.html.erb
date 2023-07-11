@@ -39,27 +39,27 @@
         padding: 20px;
       }
       .confirm-email a {
-  background-color: #009966;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
+        background-color: #009966;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
 
-.confirm-email a:hover {
-  background-color: #007744;
-}
+      .confirm-email a:hover {
+        background-color: #007744;
+      }
     </style>
   </head>
   <body>
-  <div class = "container">
-  <div class = "confirm-email">
-    <h1><%= t('views.user_mailer.confirmation_instructions.subject') %></h1>
-    <p> <%= t('views.user_mailer.confirmation_instructions.greeting')  %><%=@user.email %>,</p>
-    <p><%= t('views.user_mailer.confirmation_instructions.paragraph') %></p>
-    <p><a href="<%= confirmation_url(@user, confirmation_token: @token) %>"><%= t('views.user_mailer.confirmation_instructions.confirm_email') %></a></p>
-    <p><%= t('views.user_mailer.confirmation_instructions.paragraph') %></p>
-  </div>
-  </div>
+    <div class = "container">
+      <div class = "confirm-email">
+        <h1><%= t('views.user_mailer.confirmation_instructions.subject') %></h1>
+        <p> <%= t('views.user_mailer.confirmation_instructions.greeting')  %> <%=@user.email %>,</p>
+        <p><%= t('views.user_mailer.confirmation_instructions.body') %></p>
+        <p><a href="<%= confirmation_url(@user, confirmation_token: @token) %>"><%= t('views.user_mailer.confirmation_instructions.confirm_email') %></a></p>
+        <p><%= t('views.user_mailer.confirmation_instructions.message') %></p>
+      </div>
+    </div>
   </body>
 </html>

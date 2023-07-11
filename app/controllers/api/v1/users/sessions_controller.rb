@@ -31,7 +31,7 @@ class Api::V1::Users::SessionsController < Devise::SessionsController
     return super if request.format.html?
 
     render(json: {
-      status: { message: I18.t('controllers.users_controller.notice.sign_in') },
+      status: { message: I18n.t('controllers.users_controller.notice.sign_in') },
       data: ActiveModelSerializers::SerializableResource.new(resource, each_serializer: UserSerializer)
     }, status: :ok
     )
