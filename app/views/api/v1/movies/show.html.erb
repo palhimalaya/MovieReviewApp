@@ -1,4 +1,4 @@
-<div style="height: 90vh;", class=" d-flex justify-content-center">
+<div style="height: 90vh;", class=" d-flex justify-content-center flex-column">
 
   <div class="bg-light mb-3 mt-auto mb-auto rounded flex-wrap", style="display: flex; justify-content: center; align-item: center; flex; gap: 70px; padding: 10px; ">
     <div>
@@ -19,6 +19,24 @@
         <% end %>
     </div>
   </div>
+
+<div class="d-flex justify-content-center item-center mh-100">
+ <% if user_signed_in? %>
+    <div class="justify-center item-center">
+      <div>
+        <h2><%= t('view_movie.review.title') %></h2>
+      </div>
+      <div class="mt-6">
+        <%= link_to t('view_movie.review.button.add'), new_api_v1_review_path(@movie.id), class: "btn btn-primary" %>
+      </div>
+    </div>      
+    <% else %>
+      <div style=" max-width: 600px; text-align:start;">
+        <h2><%= t('view_movie.review.login_message') %></h2>
+      </div>
+  <% end %>
+</div>
+
 </div>
 
 
