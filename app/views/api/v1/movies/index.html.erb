@@ -1,49 +1,46 @@
 <div class="container">
   <div class="d-flex flex-row mt-4 justify-content-between">
     <div>
-    <%= form_tag(api_v1_movies_path, method: :get) do %>
-      <%= select_tag :order, options_for_select([
+      <%= form_tag(api_v1_movies_path, method: :get) do %>
+        <%= select_tag :order, options_for_select([
         ["Sort by Release Date", ""],
         ["Ascending", "asc"],
         ["Descending", "desc"]], params[:order]), onchange: "this.form.submit()", class: "form-select form-select-lg mb-3" %>
-    <% end %>
-  </div>
-  <div>
-      <%= render "search" %>
-  </div>
-  </div>
-  <div class = "mt-4" >
-      <% if user_signed_in? %>
-        <% if current_user.role == "admin" %>
-          <%= link_to t('movies.form.add'), new_api_v1_movie_path, class: "nav-link", class: 'btn btn-outline-info'%>
-        <% end %>
-      <% end %>
-  </div>
-  <div class="row">
-  <% @movies.each do |movie| %>
-    <div class="col-md-4">
-      <%= link_to api_v1_movie_path(movie), class: "text-decoration-none" do %>
-        <div class="card mt-4 mb-4" style="width: 100%; ">
-          <%= image_tag(movie.cover_img, class: "card-img-top img-fluid", style: "max-height: 200px; object-fit: cover;") %>
-          <div class="card-body">
-            <h5 class="card-title text-black"><%= movie.title %></h5>
-            <p class="card-text">
-              <%= truncate(movie.description, length: 100) %>
-              <% if movie.description.length > 100 %>
-                <%= link_to "Read More", api_v1_movie_path(movie) %>
-              <% end %>
-            </p>
-            <p class="card-text"><%= movie.release_date %></p>
-            <div class= "d-flex justify-content-between">
-              <p class="card-text"><%= "#{movie.duration} min" %></p>
-            </div>
-          </div>
-        </div>
       <% end %>
     </div>
-  <% end %>
-</div>
-
-
-
+    <div>
+      <%= render "search" %>
+    </div>
+  </div>
+  <div class = "mt-4" >
+    <% if user_signed_in? %>
+      <% if current_user.role == "admin" %>
+        <%= link_to t('movies.form.add'), new_api_v1_movie_path, class: "nav-link", class: 'btn btn-outline-info'%>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="row">
+    <% @movies.each do |movie| %>
+      <div class="col-md-4">
+        <%= link_to api_v1_movie_path(movie), class: "text-decoration-none" do %>
+          <div class="card mt-4 mb-4" style="width: 100%; ">
+            <%= image_tag(movie.cover_img.variant(:thumb), class: "card-img-top img-fluid", style: "max-height: 200px; object-fit: cover;") %>
+            <div class="card-body">
+              <h5 class="card-title text-black"><%= movie.title %></h5>
+              <p class="card-text">
+                <%= truncate(movie.description, length: 100) %>
+                <% if movie.description.length > 100 %>
+                  <%= link_to "Read More", api_v1_movie_path(movie) %>
+                <% end %>
+              </p>
+              <p class="card-text"><%= movie.release_date %></p>
+              <div class= "d-flex justify-content-between">
+                <p class="card-text"><%= "#{movie.duration} min" %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

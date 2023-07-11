@@ -25,7 +25,7 @@ class Api::V1::MoviesController < ApplicationController
     return if request.format.html?
 
     render(json: {
-      status: { message: I18n.t('controllers.movies_controller.error.find_movie') },
+      status: { message: I18n.t('controllers.movies_controller.notice.find_movie') },
       data: ActiveModel::SerializableResource.new(@movie, each_serializer: MovieSerializer)
     }, status: :ok
     )
