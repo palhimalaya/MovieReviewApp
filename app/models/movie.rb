@@ -17,4 +17,14 @@ class Movie < ApplicationRecord
 
     Float(reviews.average(:rating)).round(2)
   end
+
+  def self.to_csv
+    movies = all
+    CSV.generate do |csv|
+      csv << %w[id name aggregate_review]
+      movies.each do |movie|
+        csv << [movie.id, movie.title, movie.aggregate_rating]
+      end
+    end
+  end
 end

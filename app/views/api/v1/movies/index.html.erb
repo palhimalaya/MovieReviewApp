@@ -7,6 +7,7 @@
         ["Ascending", "asc"],
         ["Descending", "desc"]], params[:order]), onchange: "this.form.submit()", class: "form-select form-select-lg mb-3" %>
       <% end %>
+      <%= link_to "Export to csv", root_path(format: 'csv'), class: 'btn btn-outline-secondary' %>
     </div>
     <div>
       <%= render "search" %>
