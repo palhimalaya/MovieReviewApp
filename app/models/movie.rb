@@ -4,7 +4,7 @@ class Movie < ApplicationRecord
   belongs_to :user
   has_many :reviews, dependent: :destroy
 
-  has_one_attached :cover_img do |attachable|
+  has_one_attached :cover_img,  dependent: :destroy do |attachable|
     attachable.variant(:thumb, resize_to_limit: [500, 500])
   end
 
