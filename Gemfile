@@ -102,3 +102,5 @@ gem 'pg'
 gem 'sendgrid-ruby'
 
 gem 'pundit', '~> 2.3'
+
+gem 'whenever', require: false
