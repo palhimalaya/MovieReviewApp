@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 class Movie < ApplicationRecord
   belongs_to :user
   has_many :reviews, dependent: :destroy
