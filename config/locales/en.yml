@@ -16,6 +16,8 @@ en:
       delete: "Delete Movie"
 
   view_movie:
+    index:
+      export_to_csv: "Export to CSV"
     button:
       edit: "Edit"
       delete: "Delete"
