@@ -83,7 +83,7 @@ gem 'devise', '~> 4.9'
 gem 'devise-jwt'
 gem 'rack-cors'
 
-gem 'rubocop', '~> 1.18.0', require: false
+gem 'rubocop', '~> 1.54.2', require: false
 gem 'rubocop-performance', '~> 1.11.0', require: false
 gem 'rubocop-rails', '~> 2.11.0', require: false
 gem 'rubocop-rake', '~> 0.6.0', require: false
@@ -104,3 +104,5 @@ gem 'sendgrid-ruby'
 gem 'pundit', '~> 2.3'
 
 gem 'whenever', require: false
+
+gem 'cloudinary'
