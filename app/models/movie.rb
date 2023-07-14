@@ -6,9 +6,11 @@ class Movie < ApplicationRecord
   belongs_to :user
   has_many :reviews, dependent: :destroy
 
-  # has_one_attached :cover_img,  dependent: :destroy do |attachable|
-  #   attachable.variant(:thumb, resize_to_limit: [500, 500])
-  # end
+  has_one_attached :cover_img do |attachable|
+    attachable.variant(:thumb, resize_to_limit: [500, 500])
+  end
+
+  before_destroy :purge_cover_img
 
   validates :title, presence: true
   validates :release_date, presence: true
@@ -28,5 +30,11 @@ class Movie < ApplicationRecord
         csv << [movie.id, movie.title, movie.aggregate_rating]
       end
     end
+  end
+
+  private
+
+  def purge_cover_img
+    cover_img.purge if cover_img.attached?
   end
 end

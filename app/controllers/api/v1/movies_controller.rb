@@ -148,10 +148,10 @@ class Api::V1::MoviesController < ApplicationController
   def set_movie
     @movie ||= Movie.find_by(id: params[:id])
 
-    movie_not_found if @movie.blank?
+    alert_movie_not_found_error if @movie.blank?
   end
 
-  def movie_not_found
+  def alert_movie_not_found_error
     flash[:alert] = I18n.t('controllers.movies_controller.error.find_movie')
     if request.format.html?
       redirect_to(root_path)

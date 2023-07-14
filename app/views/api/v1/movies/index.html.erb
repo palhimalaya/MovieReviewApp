@@ -7,7 +7,7 @@
         ["Ascending", "asc"],
         ["Descending", "desc"]], params[:order]), onchange: "this.form.submit()", class: "form-select form-select-lg mb-3" %>
       <% end %>
-      <%= link_to "Export to csv", root_path(format: 'csv'), class: 'btn btn-outline-secondary' %>
+      <%= link_to t('view_movie.index.export_to_csv'), root_path(format: 'csv'), class: 'btn btn-outline-secondary' %>
     </div>
     <div>
       <%= render "search" %>
@@ -25,7 +25,7 @@
       <div class="col-md-4">
         <%= link_to api_v1_movie_path(movie), class: "text-decoration-none" do %>
           <div class="card mt-4 mb-4" style="width: 100%; ">
-            <%= image_tag(movie.cover_img, class: "card-img-top img-fluid", style: "max-height: 200px; object-fit: cover;") %>
+            <%= image_tag(movie.cover_img.attachment.url, class: "card-img-top img-fluid", style: "max-height: 200px; object-fit: cover;") %>
             <div class="card-body">
               <h5 class="card-title text-black"><%= movie.title %></h5>
               <p class="card-text">

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # frozen string literal: true
 # Use this file to easily define all of your cron jobs.
 #
@@ -20,3 +21,15 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+set :output, 'log/cron.log'
+set :environment, :development
+env :PATH, ENV['PATH']
+
+every 1.day, at: '10:00 am' do
+  rake 'task_namespace:reminder_email'
+end
+
+# every 1.minute do
+#   rake 'task_namespace:reminder_email'
+# end
