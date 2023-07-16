@@ -20,7 +20,7 @@ module Movies
     private
 
     def search_by_name(scope)
-      scope.where('title LIKE ?', "%#{search_query}%")
+      scope.where('LOWER(title) LIKE LOWER(?)', "%#{search_query.downcase}%")
     end
 
     def sort_by_release_date(movies)

@@ -3,7 +3,6 @@
 # This controller handles API requests related to movies.
 class Api::V1::MoviesController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :authorize_admin, except: %i[index show]
   before_action :set_movie, only: %i[show edit update destroy]
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -13,11 +12,16 @@ class Api::V1::MoviesController < ApplicationController
 
     return if request.format.html?
 
-    render(json: {
-      status: { message: I18n.t('controllers.movies_controller.notice.find_movies') },
-      data: ActiveModel::SerializableResource.new(@movies, each_serializer: MovieSerializer)
-    }, status: :ok
-    )
+    # send csv if requested by client
+    if params[:format] == 'csv'
+      send_data(@movies.to_csv, filename: "movies-#{Time.zone.now.strftime('%Y%m%d%H%M%S')}.csv")
+    else
+      render(json: {
+        status: { message: I18n.t('controllers.movies_controller.notice.find_movies') },
+        data: ActiveModel::SerializableResource.new(@movies, each_serializer: MovieSerializer)
+      }, status: :ok
+      )
+    end
   end
 
   # GET /movies/1
@@ -25,7 +29,7 @@ class Api::V1::MoviesController < ApplicationController
     return if request.format.html?
 
     render(json: {
-      status: { message: I18n.t('controllers.movies_controller.error.find_movie') },
+      status: { message: I18n.t('controllers.movies_controller.notice.find_movie') },
       data: ActiveModel::SerializableResource.new(@movie, each_serializer: MovieSerializer)
     }, status: :ok
     )
@@ -33,12 +37,14 @@ class Api::V1::MoviesController < ApplicationController
 
   # GET /movies/new
   def new
+    authorize(Movie)
     @movie = Movie.new
     @form_url = api_v1_movies_path
   end
 
   # POST /movies
   def create
+    authorize(Movie)
     @movie = Movie.new(movie_params)
     @movie.user_id = current_user.id
 
@@ -69,11 +75,13 @@ class Api::V1::MoviesController < ApplicationController
 
   # GET /movies/1/edit
   def edit
+    authorize(@movie)
     @form_url = api_v1_movie_path(@movie)
   end
 
   # PATCH/PUT /movies/1
   def update
+    authorize(@movie)
     if @movie.update(movie_params)
       flash[:notice] = I18n.t('controllers.movies_controller.notice.update_movie')
       return redirect_to(root_path) if request.format.html?
@@ -101,6 +109,7 @@ class Api::V1::MoviesController < ApplicationController
 
   # DELETE /movies/1
   def destroy
+    authorize(@movie)
     if @movie.destroy
       flash[:notice] = I18n.t('controllers.movies_controller.notice.delete_movie')
       return redirect_to(root_path) if request.format.html?
@@ -126,13 +135,6 @@ class Api::V1::MoviesController < ApplicationController
 
   private
 
-  # This method authorizes an admin user to perform certain actions.
-  def authorize_admin
-    return if @movie.blank?
-
-    authorize(@movie)
-  end
-
   def user_not_authorized
     if request.format.html?
       flash[:alert] = 'You are not authorized to perform this action.'
@@ -144,20 +146,20 @@ class Api::V1::MoviesController < ApplicationController
 
   # This method finds a movie by its ID.
   def set_movie
-    @movie = Movie.find_by(id: params[:id])
+    @movie ||= Movie.find_by(id: params[:id])
 
-    if @movie.nil?
-      flash[:alert] = I18n.t('controllers.movies_controller.error.find_movie')
-      if request.format.html?
-        redirect_to(root_path)
-      else
-        render(json: {
-          status: { message: I18n.t('controllers.movies_controller.error.find_movie') }
-        }, status: :not_found
-        )
-      end
+    movie_not_found if @movie.blank?
+  end
+
+  def movie_not_found
+    flash[:alert] = I18n.t('controllers.movies_controller.error.find_movie')
+    if request.format.html?
+      redirect_to(root_path)
     else
-      authorize(@movie)
+      render(json: {
+        status: { message: I18n.t('controllers.movies_controller.error.find_movie') }
+      }, status: :not_found
+      )
     end
   end
 
