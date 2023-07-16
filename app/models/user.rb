@@ -24,13 +24,10 @@ class User < ApplicationRecord
                          message: I18n.t('models.user.validation.incorrect_password_format')
                        }
 
-  def admin?
-    role == 'admin'
-  end
-
-  def audience?
-    role == 'audience'
-  end
+  enum role: {
+    admin: 'admin',
+    audience: 'audience'
+  }
 
   def send_instructions(confirmation_token)
     UserMailer.confirmation_instructions(self, confirmation_token).deliver
