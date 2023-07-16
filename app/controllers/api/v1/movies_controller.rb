@@ -13,11 +13,16 @@ class Api::V1::MoviesController < ApplicationController
 
     return if request.format.html?
 
-    render(json: {
-      status: { message: I18n.t('controllers.movies_controller.notice.find_movies') },
-      data: ActiveModel::SerializableResource.new(@movies, each_serializer: MovieSerializer)
-    }, status: :ok
-    )
+    # send csv if requested by client
+    if params[:format] == 'csv'
+      send_data(@movies.to_csv, filename: "movies-#{Time.zone.now.strftime('%Y%m%d%H%M%S')}.csv")
+    else
+      render(json: {
+        status: { message: I18n.t('controllers.movies_controller.notice.find_movies') },
+        data: ActiveModel::SerializableResource.new(@movies, each_serializer: MovieSerializer)
+      }, status: :ok
+      )
+    end
   end
 
   # GET /movies/1
