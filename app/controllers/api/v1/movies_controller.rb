@@ -165,6 +165,6 @@ class Api::V1::MoviesController < ApplicationController
 
   # This method permits the specified parameters for a movie.
   def movie_params
-    params.require(:movie).permit(:title, :description, :release_date, :duration, :cover_img)
+    params.permit(:title, :description, :release_date, :duration, :cover_img)
   end
 end

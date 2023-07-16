@@ -106,3 +106,5 @@ gem 'pundit', '~> 2.3'
 gem 'whenever', require: false
 
 gem 'cloudinary'
+
+gem 'rswag'
