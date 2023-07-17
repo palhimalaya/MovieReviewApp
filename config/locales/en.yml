@@ -16,6 +16,8 @@ en:
       delete: "Delete Movie"
 
   view_movie:
+    index:
+      export_to_csv: "Export to CSV"
     button:
       edit: "Edit"
       delete: "Delete"
@@ -33,17 +35,17 @@ en:
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"
-        paragraph: "You can confirm your account email through the link below:"
+        body: "You can confirm your account email through the link below:"
         greeting: "Welcome"
 
       email_change:
         subject: "Email Changed"
-        paragraph: "We're contacting you to notify you that your email is being changed to"
+        body: "We're contacting you to notify you that your email is being changed to"
         greeting: "Hello"
 
       password_change:
         subject: "Password Changed"
-        paragraph: "We're contacting you to notify you that your password has been changed."
+        body: "We're contacting you to notify you that your password has been changed."
         greeting: "Hello"
 
     password:
@@ -54,18 +56,22 @@ en:
         reset_instruction: "Send me reset password instructions"
 
   models:
-    user_model:
+    user:
       validation:
-        password_message: "must include at least one lowercase letter, one uppercase letter, one symbol, and one numeric digit"
+        incorrect_password_format: "must include at least one lowercase letter, one uppercase letter, one symbol, and one numeric digit"
 
   views:
     user_mailer:
       confirmation_instructions:
         subject: "Confirmation Instructions"
-        paragraph: "Welcome to our application! Please confirm your email address by clicking the link below:"
+        body: "Welcome to our application! Please confirm your email address by clicking the link below:"
         greeting: "Hello"
         confirm_email: "Confirm my email"
         message: "If you did not sign up for an account, you can safely ignore this email."
+
+    movie:
+      run_time: "Duration: %{duration} minutes"
+      release_date: "Release Date: %{release_date}"
 
   controllers:
     users_controller:

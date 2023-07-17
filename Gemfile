@@ -48,7 +48,7 @@ gem 'bootsnap', require: false
 # gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -83,7 +83,7 @@ gem 'devise', '~> 4.9'
 gem 'devise-jwt'
 gem 'rack-cors'
 
-gem 'rubocop', '~> 1.18.0', require: false
+gem 'rubocop', '~> 1.54.2', require: false
 gem 'rubocop-performance', '~> 1.11.0', require: false
 gem 'rubocop-rails', '~> 2.11.0', require: false
 gem 'rubocop-rake', '~> 0.6.0', require: false
@@ -100,3 +100,9 @@ gem 'securerandom'
 gem 'pg'
 
 gem 'sendgrid-ruby'
+
+gem 'pundit', '~> 2.3'
+
+gem 'whenever', require: false
+
+gem 'cloudinary'

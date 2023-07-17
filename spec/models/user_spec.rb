@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe(User, type: :model) do
   let(:user) { build(:user) }
 
-  it 'sends an email' do
+  it 'sends confirmation email to a registered user' do
     expect { user.send_instructions(user.confirmation_token) }
       .to(change { ActionMailer::Base.deliveries.count }.by(1))
   end

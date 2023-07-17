@@ -1,7 +1,10 @@
 <div  class=" d-flex justify-content-center flex-column flex-wrap bg-light  mb-auto rounded">
-  <div class=" flex-wrap", style="display: flex; justify-content: center; align-item: center; flex; gap: 70px; padding: 10px;">
-    <div>
-      <%= image_tag(@movie.cover_img, style: "max-height: 600px; max-width: 700px; height: 600px;" ) %>
+  <div class=" flex-wrap d-flex justify-content-center align-item-center gap-5 p-2
+w-auto
+">
+    <div class="w-auto
+">
+      <%= image_tag(@movie.cover_img.attachment.url, class: "img-fluid", style: "height: 600px" ) %>
     </div>
     <div style=" max-width: 600px; text-align:start;">
       <h2><%= @movie.title %></h2>
@@ -10,13 +13,13 @@
 text-secondary
 " >/10</>
       </h4>
-      <p class="text text-info"><%= "Release Date: #{@movie.release_date}" %></p>
-      <p class="text text-info"><%= "Duration: #{@movie.duration} min" %></p>
+      <p class="text text-info"><%= I18n.t('views.movie.release_date', release_date: "#{@movie.release_date}")%></p>
+      <p class="text text-info"><%= I18n.t('views.movie.run_time', duration: "#{@movie.duration}") %></p>
       <%= link_to t('view_movie.button.back'), root_path, class: "btn btn-secondary" %>
       <% if user_signed_in? %>
         <% if current_user.role == "admin" %>
           <%= link_to t('view_movie.button.edit'), edit_api_v1_movie_path(@movie.id), class: "btn btn-primary" %>
-          <%= link_to t('view_movie.button.Delete'), api_v1_movie_path(@movie.id),  data: {turbo_method: :delete ,turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          <%= link_to t('view_movie.button.delete'), api_v1_movie_path(@movie.id),  data: {turbo_method: :delete ,turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
         <% end %>
       <% end %>
     </div>
