@@ -413,7 +413,6 @@ DEPENDENCIES
   redis (~> 4.0)
   rspec-rails (~> 6.0.0)
   rswag
-  rswag-specs
   rubocop (~> 1.54.2)
   rubocop-performance (~> 1.11.0)
   rubocop-rails (~> 2.11.0)
