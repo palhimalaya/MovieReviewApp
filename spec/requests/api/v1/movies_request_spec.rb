@@ -39,7 +39,7 @@ RSpec.describe(Api::V1::MoviesController, type: :request) do
           duration: { type: :integer },
           cover_img: { type: :string, format: :binary }
         },
-        required: %w[title description release_date duration cover_img]
+        required: %w[title release_date duration cover_img]
       }
 
       response '201', 'Movie created successfully' do
@@ -115,7 +115,7 @@ RSpec.describe(Api::V1::MoviesController, type: :request) do
           duration: { type: :integer },
           cover_img: { type: :string, format: :binary }
         },
-        required: %w[title description release_date duration cover_img]
+        required: %w[title release_date duration cover_img]
       }
 
       response '200', 'Movie updated successfully' do

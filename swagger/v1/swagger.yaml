@@ -74,7 +74,6 @@ paths:
                   format: binary
               required:
               - title
-              - description
               - release_date
               - duration
               - cover_img
@@ -179,7 +178,6 @@ paths:
                   format: binary
               required:
               - title
-              - description
               - release_date
               - duration
               - cover_img
