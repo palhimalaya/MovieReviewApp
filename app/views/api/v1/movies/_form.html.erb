@@ -27,7 +27,8 @@
   <%# cover img %>
   <div class="field form-group mt-3 mb-3">
     <%= f.label :cover_img %><br />
-    <%= f.file_field :cover_img, class: "form-control mt-3" %>
+    <%= f.file_field :cover_img, class: "form-control mt-3", direct_upload: true
+ %>
   </div>
   <div class="actions form-group mt-3 mb-3">
     <%= f.submit t('movies.form.add'), class: "btn btn-primary" %>

@@ -8,6 +8,6 @@ class MovieSerializer < ActiveModel::Serializer
   has_many :reviews
 
   def cover_img_url
-    rails_blob_path(object.cover_img, only_path: true) if object.cover_img.attached?
+    object.cover_img.url if object.cover_img.attached?
   end
 end

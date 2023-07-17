@@ -137,10 +137,10 @@ class Api::V1::MoviesController < ApplicationController
 
   def user_not_authorized
     if request.format.html?
-      flash[:alert] = 'You are not authorized to perform this action.'
+      flash[:alert] = I18n.t('controllers.movies_controller.error.unauthorized')
       redirect_to(root_path)
     else
-      render(json: { error: 'You are not authorized to perform this action.' }, status: :unauthorized)
+      render(json: { error: I18n.t('controllers.movies_controller.error.unauthorized') }, status: :unauthorized)
     end
   end
 
