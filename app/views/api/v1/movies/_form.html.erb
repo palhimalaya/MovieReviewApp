@@ -1,36 +1,39 @@
-<%= form_with model: @movie, url: @form_url, method: method do |f| %>
+<%= form_tag @form_url, method: method, multipart: true do %>
   <div class="form-group mt-3 mb-3">
-    <%= f.label :title %><br />
-    <%= f.text_field :title, class: "form-control mt-3" %>
+    <%= label_tag :title %><br />
+    <%= text_field_tag 'title', @movie.title, class: "form-control mt-3" %>
     <% if @movie.errors.has_key?(:title) %>
       <p class="text-danger"><%= @movie.errors[:title].first %></p>
     <% end %>
   </div>
   <div class="form-group mt-3 mb-3">
-    <%= f.label :description %><br />
-    <%= f.text_area :description, class: "form-control mt-3" %>
+    <%= label_tag :description %><br />
+    <%= text_area_tag 'description', @movie.description, class: "form-control mt-3" %>
   </div>
   <div class="field form-group mt-3 mb-3">
-    <%= f.label :release_date %><br />
-    <%= f.date_field :release_date, class: "form-control mt-3" %>
+    <%= label_tag :release_date %><br />
+    <%= date_field_tag 'release_date', @movie.release_date, class: "form-control mt-3" %>
     <% if @movie.errors.has_key?(:release_date) %>
       <p class="text-danger"><%= @movie.errors[:release_date].first %></p>
     <% end %>
   </div>
   <div class="field form-group mt-3 mb-3">
-    <%= f.label :duration %>
-    <%= f.number_field :duration, class: "form-control mt-3" %>
+    <%= label_tag :duration %>
+    <%= number_field_tag 'duration', @movie.duration, class: "form-control mt-3" %>
     <% if @movie.errors.has_key?(:duration) %>
       <p class="text-danger"><%= @movie.errors[:duration].first %></p>
     <% end %>
   </div>
   <%# cover img %>
   <div class="field form-group mt-3 mb-3">
-    <%= f.label :cover_img %><br />
-    <%= f.file_field :cover_img, class: "form-control mt-3", direct_upload: true
- %>
+    <%= label_tag :cover_img %><br />
+    <%= file_field_tag 'cover_img', class: "form-control mt-3", direct_upload: true %>
   </div>
   <div class="actions form-group mt-3 mb-3">
-    <%= f.submit t('movies.form.add'), class: "btn btn-primary" %>
+    <% if method == :post %>
+      <%= submit_tag t('movies.form.add'), class: "btn btn-primary" %>
+    <% else %>
+      <%= submit_tag t('movies.form.update'), class: "btn btn-primary" %>
+    <% end %>
   </div>
 <% end %>
