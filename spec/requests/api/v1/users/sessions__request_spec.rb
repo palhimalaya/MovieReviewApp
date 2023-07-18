@@ -4,7 +4,7 @@ require 'swagger_helper'
 
 RSpec.describe('api/v1/sessions', type: :request) do
   path '/api/v1/users/login' do
-    post('create session') do
+    post('Session API') do
       tags 'Users'
       consumes 'application/json'
       parameter name: :user, in: :body, schema: {
