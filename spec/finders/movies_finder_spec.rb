@@ -5,11 +5,11 @@ require 'rails_helper'
 RSpec.describe(Movies::Find) do
   subject { described_class }
 
-  let!(:user1) { create(:user, password: 'P@ssw0rd1') }
+  let!(:admin_user) { build(:user, password: 'P@ssw0rd1') }
 
-  let!(:movie1) { create(:movie, user: user1, title: 'The Matrix', release_date: '1999-03-31') }
-  let!(:movie2) { create(:movie, user: user1, title: 'Inception', release_date: '2010-07-16') }
-  let!(:movie3) { create(:movie, user: user1, title: 'Interstellar', release_date: '2014-11-05') }
+  let!(:movie1) { create(:movie, user: admin_user, title: 'The Matrix', release_date: '1999-03-31') }
+  let!(:movie2) { create(:movie, user: admin_user, title: 'Inception', release_date: '2010-07-16') }
+  let!(:movie3) { create(:movie, user: admin_user, title: 'Interstellar', release_date: '2014-11-05') }
 
   describe '#execute' do
     let(:scope) { Movie.all }
