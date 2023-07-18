@@ -2,7 +2,7 @@
 
 require 'swagger_helper'
 
-RSpec.describe(Api::V1::MoviesController, type: :request) do
+RSpec.describe(Movie(API, type: :request)) do
   path '/api/v1/movies' do
     get 'Get a list of movies' do
       tags 'Movies'
@@ -13,11 +13,24 @@ RSpec.describe(Api::V1::MoviesController, type: :request) do
           movies: [
             {
               id: 1,
-              title: 'Movie Title',
+              title: 'The Matrix',
               description: 'Movie Description',
-              release_date: '2023-07-31',
+              release_date: '1999-03-31',
               duration: 120,
-              cover_img: 'https://example.com/cover_img.jpg'
+              user_id: 1,
+              cover_img: 'http://res.cloudinary.com/dtghv3ml5/image/upload/jzwaqy0pegzl8kx0jxmd6g4sht2t.png',
+              aggregate_rating: 4.0,
+              reviews: [
+                {
+                  id: 2,
+                  movie_id: 1,
+                  user_id: 6,
+                  rating: 4,
+                  review: 'string',
+                  created_at: '2023-07-16T12:38:29.262Z',
+                  updated_at: '2023-07-16T12:38:29.262Z'
+                }
+              ]
             }
           ]
         }
@@ -46,11 +59,24 @@ RSpec.describe(Api::V1::MoviesController, type: :request) do
         examples 'application/json' => {
           movie: {
             id: 1,
-            title: 'Movie Title',
+            title: 'The Matrix',
             description: 'Movie Description',
-            release_date: '2023-07-31',
+            release_date: '1999-03-31',
             duration: 120,
-            cover_img: 'https://example.com/cover_img.jpg'
+            user_id: 1,
+            cover_img: 'http://res.cloudinary.com/dtghv3ml5/image/upload/jzwaqy0pegzl8kx0jxmd6g4sht2t.png',
+            aggregate_rating: 4.0,
+            reviews: [
+              {
+                id: 2,
+                movie_id: 1,
+                user_id: 6,
+                rating: 4,
+                review: 'string',
+                created_at: '2023-07-16T12:38:29.262Z',
+                updated_at: '2023-07-16T12:38:29.262Z'
+              }
+            ]
           }
         }
 
@@ -70,7 +96,7 @@ RSpec.describe(Api::V1::MoviesController, type: :request) do
   end
 
   path '/api/v1/movies/{id}' do
-    get 'Get a movie by id' do
+    get 'Fetch details of a movie' do
       tags 'Movies'
       produces 'application/json'
       parameter name: :id, in: :path, type: :integer
@@ -79,14 +105,37 @@ RSpec.describe(Api::V1::MoviesController, type: :request) do
         examples 'application/json' => {
           movie: {
             id: 1,
-            title: 'Movie Title',
+            title: 'The Matrix',
             description: 'Movie Description',
-            release_date: '2023-07-31',
+            release_date: '1999-03-31',
             duration: 120,
-            cover_img: 'https://example.com/cover_img.jpg'
+            user_id: 1,
+            cover_img: 'http://res.cloudinary.com/dtghv3ml5/image/upload/jzwaqy0pegzl8kx0jxmd6g4sht2t.png',
+            aggregate_rating: 4.0,
+            reviews: [
+              {
+                id: 2,
+                movie_id: 1,
+                user_id: 6,
+                rating: 4,
+                review: 'string',
+                created_at: '2023-07-16T12:38:29.262Z',
+                updated_at: '2023-07-16T12:38:29.262Z'
+              }
+            ]
           }
         }
 
+        run_test!
+      end
+
+      response '403', 'Forbidden' do
+        examples 'application/json' => {
+          status: {
+            code: 403,
+            message: 'You need to sign in or sign up before continuing.'
+          }
+        }
         run_test!
       end
 
@@ -101,7 +150,7 @@ RSpec.describe(Api::V1::MoviesController, type: :request) do
       end
     end
 
-    patch 'Update a movie' do
+    patch 'Updates a movie' do
       tags 'Movies'
       consumes 'multipart/form-data'
       produces 'application/json'
@@ -122,11 +171,24 @@ RSpec.describe(Api::V1::MoviesController, type: :request) do
         examples 'application/json' => {
           movie: {
             id: 1,
-            title: 'Movie Title',
+            title: 'The Matrix',
             description: 'Movie Description',
-            release_date: '2023-07-31',
+            release_date: '1999-03-31',
             duration: 120,
-            cover_img: 'https://example.com/cover_img.jpg'
+            user_id: 1,
+            cover_img: 'http://res.cloudinary.com/dtghv3ml5/image/upload/jzwaqy0pegzl8kx0jxmd6g4sht2t.png',
+            aggregate_rating: 4.0,
+            reviews: [
+              {
+                id: 2,
+                movie_id: 1,
+                user_id: 6,
+                rating: 4,
+                review: 'string',
+                created_at: '2023-07-16T12:38:29.262Z',
+                updated_at: '2023-07-16T12:38:29.262Z'
+              }
+            ]
           }
         }
 
@@ -156,7 +218,7 @@ RSpec.describe(Api::V1::MoviesController, type: :request) do
       end
     end
 
-    delete 'Delete a movie' do
+    delete 'Deletes a movie' do
       tags 'Movies'
       produces 'application/json'
       parameter name: :id, in: :path, type: :integer

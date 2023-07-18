@@ -38,6 +38,15 @@ RSpec.describe('User Registration API', type: :request) do
         run_test!
       end
 
+      response '403', 'Forbidden' do
+        examples 'application/json' => {
+          error: {
+            code: 403,
+            message: 'Forbidden'
+          }
+        }
+      end
+
       response '422', 'Unprocessable Entity' do
         examples 'application/json' => {
           error: {
