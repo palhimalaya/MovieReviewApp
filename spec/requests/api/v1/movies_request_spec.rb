@@ -2,7 +2,7 @@
 
 require 'swagger_helper'
 
-RSpec.describe(Movie(API, type: :request)) do
+RSpec.describe('MovieAPI', type: :request) do
   path '/api/v1/movies' do
     get 'Get a list of movies' do
       tags 'Movies'
@@ -155,14 +155,15 @@ RSpec.describe(Movie(API, type: :request)) do
       consumes 'multipart/form-data'
       produces 'application/json'
       parameter name: :id, in: :path, type: :integer
-      parameter name: :movie, in: :formData, type: :object, schema: {
+
+      parameter name: :movie, in: :formData, schema: {
         type: :object,
         properties: {
           title: { type: :string },
           description: { type: :string },
           release_date: { type: :string, format: :date },
           duration: { type: :integer },
-          cover_img: { type: :string, format: :binary }
+          cover_img: { type: :file }
         },
         required: %w[title release_date duration cover_img]
       }

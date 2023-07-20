@@ -4,242 +4,33 @@ info:
   title: API V1
   version: v1
 paths:
-  "/api/v1/movies":
-    get:
-      summary: Get a list of movies
-      tags:
-      - Movies
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                example_0:
-                  value:
-                    movies:
-                    - id: 1
-                      title: Movie Title
-                      description: Movie Description
-                      release_date: '2023-07-31'
-                      duration: 120
-                      cover_img: https://example.com/cover_img.jpg
-    post:
-      summary: Create a new movie
-      tags:
-      - Movies
-      parameters: []
-      responses:
-        '201':
-          description: Movie created successfully
-          content:
-            application/json:
-              examples:
-                example_0:
-                  value:
-                    movie:
-                      id: 1
-                      title: Movie Title
-                      description: Movie Description
-                      release_date: '2023-07-31'
-                      duration: 120
-                      cover_img: https://example.com/cover_img.jpg
-        '422':
-          description: Unprocessable Entity
-          content:
-            application/json:
-              examples:
-                example_0:
-                  value:
-                    status:
-                      code: 422
-                      message: Invalid Movie
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                title:
-                  type: string
-                description:
-                  type: string
-                release_date:
-                  type: string
-                  format: date
-                duration:
-                  type: integer
-                cover_img:
-                  type: string
-                  format: binary
-              required:
-              - title
-              - release_date
-              - duration
-              - cover_img
-  "/api/v1/movies/{id}":
-    get:
-      summary: Get a movie by id
-      tags:
-      - Movies
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                example_0:
-                  value:
-                    movie:
-                      id: 1
-                      title: Movie Title
-                      description: Movie Description
-                      release_date: '2023-07-31'
-                      duration: 120
-                      cover_img: https://example.com/cover_img.jpg
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              examples:
-                example_0:
-                  value:
-                    status:
-                      code: 404
-                      message: Movie not found
-    patch:
-      summary: Update a movie
-      tags:
-      - Movies
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-      responses:
-        '200':
-          description: Movie updated successfully
-          content:
-            application/json:
-              examples:
-                example_0:
-                  value:
-                    movie:
-                      id: 1
-                      title: Movie Title
-                      description: Movie Description
-                      release_date: '2023-07-31'
-                      duration: 120
-                      cover_img: https://example.com/cover_img.jpg
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              examples:
-                example_0:
-                  value:
-                    status:
-                      code: 404
-                      message: Movie not found
-        '422':
-          description: Unprocessable Entity
-          content:
-            application/json:
-              examples:
-                example_0:
-                  value:
-                    status:
-                      code: 422
-                      message: Invalid Movie
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                title:
-                  type: string
-                description:
-                  type: string
-                release_date:
-                  type: string
-                  format: date
-                duration:
-                  type: integer
-                cover_img:
-                  type: string
-                  format: binary
-              required:
-              - title
-              - release_date
-              - duration
-              - cover_img
-    delete:
-      summary: Delete a movie
-      tags:
-      - Movies
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-      responses:
-        '200':
-          description: Movie deleted successfully
-          content:
-            application/json:
-              examples:
-                example_0:
-                  value:
-                    status:
-                      code: 200
-                      message: Movie deleted successfully
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              examples:
-                example_0:
-                  value:
-                    status:
-                      code: 404
-                      message: Movie not found
   "/api/v1/movies/{movie_id}/":
-    parameters:
-    - name: movie_id
-      in: path
-      required: true
-      schema:
-        type: integer
     get:
       summary: Get all reviews for a specific movie
       tags:
       - Reviews
+      parameters:
+      - name: movie_id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
         '200':
-          description: Reviews found
+          description: OK
         '404':
           description: Movie not found
   "/api/v1/movies/{movie_id}/reviews":
-    parameters:
-    - name: movie_id
-      in: path
-      required: true
-      schema:
-        type: integer
     post:
       summary: Create a new review
       tags:
       - Reviews
-      parameters: []
+      parameters:
+      - name: movie_id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
         '201':
           description: Review created successfully
@@ -279,6 +70,263 @@ paths:
               required:
               - rating
               - review
+  "/api/v1/movies":
+    get:
+      summary: Get a list of movies
+      tags:
+      - Movies
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    movies:
+                    - id: 1
+                      title: The Matrix
+                      description: Movie Description
+                      release_date: '1999-03-31'
+                      duration: 120
+                      user_id: 1
+                      cover_img: http://res.cloudinary.com/dtghv3ml5/image/upload/jzwaqy0pegzl8kx0jxmd6g4sht2t.png
+                      aggregate_rating: 4.0
+                      reviews:
+                      - id: 2
+                        movie_id: 1
+                        user_id: 6
+                        rating: 4
+                        review: string
+                        created_at: '2023-07-16T12:38:29.262Z'
+                        updated_at: '2023-07-16T12:38:29.262Z'
+    post:
+      summary: Create a new movie
+      tags:
+      - Movies
+      parameters: []
+      responses:
+        '201':
+          description: Movie created successfully
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    movie:
+                      id: 1
+                      title: The Matrix
+                      description: Movie Description
+                      release_date: '1999-03-31'
+                      duration: 120
+                      user_id: 1
+                      cover_img: http://res.cloudinary.com/dtghv3ml5/image/upload/jzwaqy0pegzl8kx0jxmd6g4sht2t.png
+                      aggregate_rating: 4.0
+                      reviews:
+                      - id: 2
+                        movie_id: 1
+                        user_id: 6
+                        rating: 4
+                        review: string
+                        created_at: '2023-07-16T12:38:29.262Z'
+                        updated_at: '2023-07-16T12:38:29.262Z'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    status:
+                      code: 422
+                      message: Invalid Movie
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                release_date:
+                  type: string
+                  format: date
+                duration:
+                  type: integer
+                cover_img:
+                  type: string
+                  format: binary
+              required:
+              - title
+              - release_date
+              - duration
+              - cover_img
+  "/api/v1/movies/{id}":
+    get:
+      summary: Fetch details of a movie
+      tags:
+      - Movies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    movie:
+                      id: 1
+                      title: The Matrix
+                      description: Movie Description
+                      release_date: '1999-03-31'
+                      duration: 120
+                      user_id: 1
+                      cover_img: http://res.cloudinary.com/dtghv3ml5/image/upload/jzwaqy0pegzl8kx0jxmd6g4sht2t.png
+                      aggregate_rating: 4.0
+                      reviews:
+                      - id: 2
+                        movie_id: 1
+                        user_id: 6
+                        rating: 4
+                        review: string
+                        created_at: '2023-07-16T12:38:29.262Z'
+                        updated_at: '2023-07-16T12:38:29.262Z'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    status:
+                      code: 403
+                      message: You need to sign in or sign up before continuing.
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    status:
+                      code: 404
+                      message: Movie not found
+    patch:
+      summary: Updates a movie
+      tags:
+      - Movies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Movie updated successfully
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    movie:
+                      id: 1
+                      title: The Matrix
+                      description: Movie Description
+                      release_date: '1999-03-31'
+                      duration: 120
+                      user_id: 1
+                      cover_img: http://res.cloudinary.com/dtghv3ml5/image/upload/jzwaqy0pegzl8kx0jxmd6g4sht2t.png
+                      aggregate_rating: 4.0
+                      reviews:
+                      - id: 2
+                        movie_id: 1
+                        user_id: 6
+                        rating: 4
+                        review: string
+                        created_at: '2023-07-16T12:38:29.262Z'
+                        updated_at: '2023-07-16T12:38:29.262Z'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    status:
+                      code: 404
+                      message: Movie not found
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    status:
+                      code: 422
+                      message: Invalid Movie
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                release_date:
+                  type: string
+                  format: date
+                duration:
+                  type: integer
+                cover_img:
+                  type: file
+              required:
+              - title
+              - release_date
+              - duration
+              - cover_img
+    delete:
+      summary: Deletes a movie
+      tags:
+      - Movies
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Movie deleted successfully
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    status:
+                      code: 200
+                      message: Movie deleted successfully
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    status:
+                      code: 404
+                      message: Movie not found
   "/api/v1/users/":
     post:
       summary: Register a new user
@@ -342,7 +390,7 @@ paths:
                   - password_confirmation
   "/api/v1/users/login":
     post:
-      summary: create session
+      summary: Session API
       tags:
       - Users
       parameters: []
