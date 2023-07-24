@@ -13,6 +13,7 @@ en:
       back: "Back"
       add: "Add Movie"
       edit: "Edit Movie"
+      update: "Update Movie"
       delete: "Delete Movie"
 
   view_movie:

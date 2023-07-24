@@ -2,15 +2,14 @@
 
 require 'swagger_helper'
 
-RSpec.describe('API::V1::Reviews', type: :request) do
+RSpec.describe('Movie User Review API', type: :request) do
   path '/api/v1/movies/{movie_id}/' do
-    parameter name: :movie_id, in: :path, type: :integer, required: true
-
     get 'Get all reviews for a specific movie' do
       tags 'Reviews'
       produces 'application/json'
+      parameter name: :movie_id, in: :path, type: :integer, required: true
 
-      response '200', 'Reviews found' do
+      response '200', 'OK' do
         let(:movie_id) { 5 }
         run_test!
       end
@@ -21,12 +20,13 @@ RSpec.describe('API::V1::Reviews', type: :request) do
       end
     end
   end
+
   path '/api/v1/movies/{movie_id}/reviews' do
-    parameter name: :movie_id, in: :path, type: :integer, required: true
     post 'Create a new review' do
       tags 'Reviews'
       consumes 'application/json'
       produces 'application/json'
+      parameter name: :movie_id, in: :path, type: :integer, required: true
       parameter name: :review, in: :body, schema: {
         type: :object,
         properties: {
