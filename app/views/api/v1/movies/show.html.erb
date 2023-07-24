@@ -29,9 +29,11 @@ text-secondary
       <div>
         <h2><%= t('view_movie.review.title') %></h2>
         <% if user_signed_in? %>
-          <div class="mt-6">
-            <%= link_to t('view_movie.review.button.add'), new_api_v1_movie_review_path(@movie), class: "btn btn-primary" %>
-          </div>
+          <% if current_user.role == "audience" %>
+            <div class="mt-6">
+              <%= link_to t('view_movie.review.button.add'), new_api_v1_movie_review_path(@movie), class: "btn btn-primary" %>
+            </div>
+          <% end %>
         <% else %>
           <div style=" max-width: 600px; text-align:start;">
             <h2><%= t('view_movie.review.login_message') %></h2>
