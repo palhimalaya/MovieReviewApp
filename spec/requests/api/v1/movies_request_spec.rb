@@ -35,7 +35,10 @@ RSpec.describe('MovieAPI', type: :request) do
           ]
         }
 
-        run_test!
+        # api test here
+        run_test do
+          expect(response).to(have_http_status(:ok))
+        end
       end
     end
 

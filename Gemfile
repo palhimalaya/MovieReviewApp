@@ -83,12 +83,6 @@ gem 'devise', '~> 4.9'
 gem 'devise-jwt'
 gem 'rack-cors'
 
-gem 'rubocop', '~> 1.54.2', require: false
-gem 'rubocop-performance', '~> 1.11.0', require: false
-gem 'rubocop-rails', '~> 2.11.0', require: false
-gem 'rubocop-rake', '~> 0.6.0', require: false
-gem 'rubocop-rspec', '~> 2.4.0', require: false
-
 gem 'overcommit', '~> 0.60.0'
 
 gem 'active_model_serializers', '~> 0.10.13'
@@ -108,3 +102,9 @@ gem 'whenever', require: false
 gem 'cloudinary'
 
 gem 'rswag'
+
+gem 'rubocop', '~> 1.54'
+gem 'rubocop-performance', '~> 1.18'
+gem 'rubocop-rails', '~> 2.11'
+gem 'rubocop-rake', '~> 0.6.0'
+gem 'rubocop-rspec', '~> 2.22'
