@@ -55,7 +55,6 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
-  gem 'letter_opener'
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 6.0.0'
 end
@@ -74,6 +73,7 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  gem 'letter_opener'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'webdrivers'

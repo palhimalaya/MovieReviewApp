@@ -8,6 +8,6 @@ class MovieSerializer < ActiveModel::Serializer
   has_many :reviews
 
   def cover_img_url
-    object.cover_img.url if object.cover_img.attached?
+    object.cover_img.url unless object.cover_img.attached?
   end
 end
