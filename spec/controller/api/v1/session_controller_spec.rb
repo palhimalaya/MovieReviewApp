@@ -3,9 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe('Api Session', type: :request) do
-  include_context 'api request authentication helper methods'
-  include_context 'api request global before and after hooks'
-
   let(:admin_user) { create(:user, password: 'Password1@') }
 
   context 'Login User' do
