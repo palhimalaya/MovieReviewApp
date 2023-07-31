@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'devise/jwt/test_helpers'
 
-RSpec.describe(Api::V1::ReviewsController, type: :request) do
+RSpec.describe('Review API', type: :request) do
   let(:admin_user) { create(:user, password: 'P@ssw0rd1') }
   let(:audience) { create(:user, role: 'audience', password: 'P@ssw0rd1') }
   let(:headers) { { 'Accept' => 'application/json', 'Content-Type' => 'application/json' } }

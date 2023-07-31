@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe('Api Session', type: :request) do
+RSpec.describe('Session API', type: :request) do
   let(:admin_user) { create(:user, password: 'Password1@') }
 
   context 'Login User' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe('Registeration Api', type: :request) do
+RSpec.describe('Registration API', type: :request) do
   describe 'POST /api/v1/users' do
     context 'with valid attributes' do
       it 'creates a new user' do

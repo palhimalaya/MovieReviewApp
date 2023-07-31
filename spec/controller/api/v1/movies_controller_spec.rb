@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'devise/jwt/test_helpers'
 
-RSpec.describe(Api::V1::MoviesController, type: :request) do
+RSpec.describe('Movie API', type: :request) do
   let(:admin_user) { create(:user, password: 'P@ssw0rd1') }
   let(:headers) { { 'Accept' => 'application/json', 'Content-Type' => 'application/json' } }
   let(:auth_headers) { Devise::JWT::TestHelpers.auth_headers(headers, admin_user) }
@@ -55,6 +55,15 @@ RSpec.describe(Api::V1::MoviesController, type: :request) do
 
         expect(response).to(have_http_status(:created))
       end
+
+      it 'check total number of records created' do
+        admin_user.confirm
+        movie_attributes = attributes_for(:movie, user: admin_user)
+
+        post '/api/v1/movies', params: movie_attributes.to_json, headers: auth_headers
+
+        expect(Movie.count).to(eq(1))
+      end
     end
 
     context 'with invalid attributes' do
@@ -68,6 +77,12 @@ RSpec.describe(Api::V1::MoviesController, type: :request) do
         admin_user.confirm
         post('/api/v1/movies', params: { movie: attributes_for(:movie, title: '') }, headers: auth_headers)
         expect(response).to(have_http_status(:unprocessable_entity))
+      end
+
+      it 'returns an error message' do
+        admin_user.confirm
+        post('/api/v1/movies', params: { movie: attributes_for(:movie, title: '') }, headers: auth_headers)
+        expect(response.body).to(include('Movie was not created.'))
       end
     end
   end
@@ -92,6 +107,16 @@ RSpec.describe(Api::V1::MoviesController, type: :request) do
         put "/api/v1/movies/#{movie.id}", params: movie_attributes.to_json, headers: auth_headers
 
         expect(response).to(have_http_status(:unprocessable_entity))
+      end
+
+      it 'returns an error message' do
+        admin_user.confirm
+        movie = create(:movie, user: admin_user)
+        movie_attributes = attributes_for(:movie, title: '')
+
+        put "/api/v1/movies/#{movie.id}", params: movie_attributes.to_json, headers: auth_headers
+
+        expect(response.body).to(include('Movie was not updated.'))
       end
     end
 
