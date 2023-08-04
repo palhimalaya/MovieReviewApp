@@ -60,7 +60,7 @@ class Api::V1::Users::RegistrationsController < Devise::RegistrationsController
       render(json: {
         status: {  message: I18n.t('controllers.users_controller.notice.create') },
         data: ActiveModel::SerializableResource.new(resource, each_serializer: UserSerializer)
-      }, status: :ok
+      }, status: :created
       )
     elsif request.method == 'DELETE'
       render(json: {

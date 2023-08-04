@@ -55,7 +55,6 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
-  gem 'letter_opener'
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 6.0.0'
 end
@@ -74,6 +73,7 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  gem 'letter_opener'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'webdrivers'
@@ -82,12 +82,6 @@ end
 gem 'devise', '~> 4.9'
 gem 'devise-jwt'
 gem 'rack-cors'
-
-gem 'rubocop', '~> 1.54.2', require: false
-gem 'rubocop-performance', '~> 1.11.0', require: false
-gem 'rubocop-rails', '~> 2.11.0', require: false
-gem 'rubocop-rake', '~> 0.6.0', require: false
-gem 'rubocop-rspec', '~> 2.4.0', require: false
 
 gem 'overcommit', '~> 0.60.0'
 
@@ -108,3 +102,9 @@ gem 'whenever', require: false
 gem 'cloudinary'
 
 gem 'rswag'
+
+gem 'rubocop', '~> 1.54'
+gem 'rubocop-performance', '~> 1.18'
+gem 'rubocop-rails', '~> 2.11'
+gem 'rubocop-rake', '~> 0.6.0'
+gem 'rubocop-rspec', '~> 2.22'
