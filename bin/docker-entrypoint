@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# If running the rails server then create or migrate existing database
+if [ "${*}" == "./bin/rails server" ]; then
+  ./bin/rails db:create
+  ./bin/rails db:migrate
+  ./bin/rails db:seed
+  ./bin/rails assets:precompile
+  ./bin/rails db:prepare
+fi
+
+exec "${@}"

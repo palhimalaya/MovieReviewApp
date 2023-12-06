@@ -1,9 +1,29 @@
-# SQLite. Versions 3.8.0 and up are supported.
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem "sqlite3"
-#
+# # SQLite. Versions 3.8.0 and up are supported.
+# #   gem install sqlite3
+# #
+# #   Ensure the SQLite 3 gem is defined in your Gemfile
+# #   gem "sqlite3"
+# #
+# # default: &default
+# #   adapter: sqlite3
+# #   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+# #   timeout: 5000
+
+# # development:
+# #   <<: *default
+# #   database: db/development.sqlite3
+
+# # # Warning: The database defined as "test" will be erased and
+# # # re-generated from your development database when you run "rake".
+# # # Do not set this db to the same as development or production.
+# # test:
+# #   <<: *default
+# #   database: db/test.sqlite3
+
+# # production:
+# #   <<: *default
+# #   database: db/production.sqlite3
+
 # default: &default
 #   adapter: sqlite3
 #   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -12,38 +32,47 @@
 # development:
 #   <<: *default
 #   database: db/development.sqlite3
-
+#   # database: movie_review_development
 # # Warning: The database defined as "test" will be erased and
 # # re-generated from your development database when you run "rake".
 # # Do not set this db to the same as development or production.
 # test:
 #   <<: *default
 #   database: db/test.sqlite3
+#   # database: movie_review_test
 
 # production:
-#   <<: *default
-#   database: db/production.sqlite3
+#   adapter: postgresql
+#   encoding: unicode
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   timeout: 5000
+#   url: <%= ENV['DATABASE_URL'] %>
+
+
 
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  host: <%= ENV['POSTGRES_HOST'] %>
+  port: 5432
 
 development:
   <<: *default
-  database: db/development.sqlite3
-  # database: movie_review_development
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
+  database: video_development
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+
 test:
   <<: *default
-  database: db/test.sqlite3
-  # database: movie_review_test
+  database: video_test
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-  url: <%= ENV['DATABASE_URL'] %>
+  <<: *default
+  database: <%= ENV['POSTGRES_DB'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
