@@ -8,7 +8,7 @@ set :repo_url, 'https://github.com/palhimalaya/MovieReviewApp.git'
 
 # rvm version in server. Change the rvm ruby if you are using a different rvm ruby version
 set :rvm_ruby_version, 'ruby-3.2.2'
-set :branch, 'docker'
+set :branch, 'cap'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
