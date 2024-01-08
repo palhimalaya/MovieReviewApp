@@ -45,7 +45,7 @@
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
-server '192.168.1.64',
+server '192.168.1.65',
        user: 'deploy',
        roles: %w[web app],
        primary: true
