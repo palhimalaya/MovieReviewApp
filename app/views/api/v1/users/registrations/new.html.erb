@@ -34,7 +34,7 @@
     </div>
     <div class="field form-group mt-3 mb-3">
       <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", class: "form-control mt-3"%>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mt-3"%>
       <% if resource.errors.has_key?(:password_confirmation) %>
         <p class="text-danger"><%= resource.errors[:password_confirmation].first %></p>
       <% end %>

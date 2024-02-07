@@ -16,7 +16,7 @@
   <div class = "mt-4" >
     <% if user_signed_in? %>
       <% if current_user.role == "admin" %>
-        <%= link_to t('movies.form.add'), new_api_v1_movie_path, class: "nav-link", class: 'btn btn-outline-info'%>
+        <%= link_to t('movies.form.add'), new_api_v1_movie_path, class: 'nav-link btn btn-outline-info'%>
       <% end %>
     <% end %>
   </div>
